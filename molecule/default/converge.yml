@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include matheusmazzoni.install_gcloud"
+      include_role:
+        name: "matheusmazzoni.install_gcloud"

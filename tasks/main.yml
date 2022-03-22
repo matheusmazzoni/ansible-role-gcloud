@@ -1,0 +1,27 @@
+---
+
+- name: Update apt databases
+  apt:
+    autoclean: true
+    autoremove: true
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Ensure install Python 2.7.9 or higher
+  apt: 
+   name: python3
+
+- name: Download google cloud sdk
+  get_url:    
+    url: {{ gcloud_download_sdk_url }}
+    dest: {{ gcloud_download_dir }}
+    mode: 0755
+
+- name: Extract tar sdk into {{ gcloud_download_dir }}
+  unarchive:
+    src: foo.tgz
+    dest: "{{ gcloud_download_dir }}"
+ 
+- name: Installing sdk
+  shell: "{{ gcloud_download_dir }}"/google-cloud-sdk/install.sh -q
+ 
